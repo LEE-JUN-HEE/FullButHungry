@@ -15,11 +15,14 @@ public class UI_Base : MonoBehaviour
     {
         lb_Level.text = UserInfo.Level.ToString();
         pb_Exp.value = UserInfo.NormalizedExp;
-        go_ParticleL.SetActive(!UserInfo.HungryCheck);
-        go_ParticleR.SetActive(UserInfo.HungryCheck);
-        Refresh_Hungry();
+        Refresh();
     }
 
+    public void Refresh()
+    {
+        refresh_hungry();
+        refresh_induceclick();
+    }
     
     public void OnClick_Check()
     {
@@ -31,7 +34,7 @@ public class UI_Base : MonoBehaviour
         LobbyManager.Instance.SelectFoodUI.Show();
     }
 
-    public void Refresh_Hungry()
+    void refresh_hungry()
     {
         int count = 0;
         if (UserInfo.HungryCheck == true)
@@ -43,5 +46,11 @@ public class UI_Base : MonoBehaviour
             }
         }
         lb_Hungry.text = count + "%";
+    }
+
+    void refresh_induceclick()
+    {
+        go_ParticleL.SetActive(!UserInfo.HungryCheck);
+        go_ParticleR.SetActive(UserInfo.HungryCheck);
     }
 }

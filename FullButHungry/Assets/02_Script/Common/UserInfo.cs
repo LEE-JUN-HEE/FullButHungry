@@ -13,7 +13,7 @@ public class UserInfo
 
     //앱 켜저있을때만 저장
     static public bool HungryCheck = false;
-    static public List<bool> Hungry = new List<bool>();
+    static public List<bool> Hungry = new List<bool>(10);
 
 
     //////////////////////////////////////////////////////////////////
@@ -23,11 +23,13 @@ public class UserInfo
     {
         if (PlayerPrefs.HasKey("Level"))
         {
+            Debug.Log("Load");
             Level = PlayerPrefs.GetInt("Level");
             Exp = PlayerPrefs.GetFloat("Exp");
         }
         else
         {
+            Debug.Log("First");
             Level = 1;
             Exp = 0;
             PlayerPrefs.SetInt("Level", 1);

@@ -25,9 +25,9 @@ public class UI_HungryCheck : MonoBehaviour
             }
         }
         sv_Check.ResetPosition();
+        gameObject.SetActive(true);
     }
-
-
+    
     public void Hide()
     {
         gameObject.SetActive(false);
@@ -41,8 +41,17 @@ public class UI_HungryCheck : MonoBehaviour
     public void OnClick_OK()
     {
         UserInfo.HungryCheck = true;
-        for(int i =0; i<10; i++)
-            UserInfo.Hungry[i] = ITList[i].isYes;
+        if (UserInfo.Hungry.Count == 0)
+        {
+            for (int i = 0; i < 10; i++)
+                UserInfo.Hungry.Add(ITList[i].isYes);
+        }
+        else
+        {
+            for (int i = 0; i < 10; i++)
+                UserInfo.Hungry[i] = ITList[i].isYes;
+        }
+        LobbyManager.Instance.BaseUI.Refresh();
         Hide();
     }
 }
