@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UserInfo
 {
@@ -11,8 +12,8 @@ public class UserInfo
     static public float NormalizedExp { get { return Exp / MaxExp; } }
 
     //앱 켜저있을때만 저장
-    static public int Hungry = 0;
     static public bool HungryCheck = false;
+    static public List<bool> Hungry = new List<bool>();
 
 
     //////////////////////////////////////////////////////////////////

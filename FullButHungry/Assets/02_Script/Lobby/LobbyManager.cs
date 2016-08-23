@@ -16,5 +16,7 @@ public class LobbyManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        BaseUI.Init();
     }
+
 }

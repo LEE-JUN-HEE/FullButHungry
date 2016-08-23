@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour 
 {
@@ -11,5 +12,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         UserInfo.Init();
+        SceneManager.LoadScene("01_Lobby");
 	}
 }
