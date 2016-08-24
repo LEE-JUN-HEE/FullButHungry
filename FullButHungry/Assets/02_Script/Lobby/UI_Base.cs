@@ -5,11 +5,15 @@ public class UI_Base : MonoBehaviour
 {
     public UILabel lb_Level = null;
     public UIProgressBar pb_Exp = null;
-    public GameObject go_CheckList = null;
     public UILabel lb_Hungry = null;
     public UILabel lb_Talk = null;
     public GameObject go_ParticleL = null;
     public GameObject go_ParticleR = null;
+
+
+    /// <summary>
+    /// 
+    /// </summary>
 
     public void Init()
     {
@@ -24,16 +28,6 @@ public class UI_Base : MonoBehaviour
         refresh_induceclick();
     }
     
-    public void OnClick_Check()
-    {
-        LobbyManager.Instance.HungryCheckUI.Show();
-    }
-
-    public void OnClick_MainGame()
-    {
-        LobbyManager.Instance.SelectFoodUI.Show();
-    }
-
     void refresh_hungry()
     {
         int count = 0;
@@ -52,5 +46,41 @@ public class UI_Base : MonoBehaviour
     {
         go_ParticleL.SetActive(!UserInfo.HungryCheck);
         go_ParticleR.SetActive(UserInfo.HungryCheck);
+    }
+
+    /// <summary>
+    /// /////////
+    /// </summary>
+    /// 
+
+    public void OnClick_Check()
+    {
+        LobbyManager.Instance.HungryCheckUI.Show();
+    }
+
+    public void OnClick_MainGame()
+    {
+        LobbyManager.Instance.SelectFoodUI.Show();
+    }
+
+    public void OnClick_Mission()
+    {
+        LobbyManager.Instance.MissionUI.Show();
+    }
+
+    public void OnClick_Home()
+    {
+    }
+    public void OnClick_Storage()
+    {
+        LobbyManager.Instance.EmotionStorageUI.Show();
+    }
+
+    public void OnClick_Dic()
+    {
+    }
+
+    public void OnClick_Brain()
+    {
     }
 }

@@ -19,7 +19,7 @@ public class IT_Check : MonoBehaviour
 
     public void SetData(int index, string _question, bool _isYes)
     {
-        sp_BG.color = (index % 2 == 0) ? c_pink : c_white;
+        sp_BG.spriteName = (index % 2 == 0) ? "Check_BG2" : "Check_BG1";
         lb_Number.text = index.ToString() + ".";
         lb_Question.text = _question;
 

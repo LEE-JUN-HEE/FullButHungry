@@ -5,6 +5,7 @@ public class UI_SelectFood : MonoBehaviour
 {
     public void Show()
     {
+        gameObject.SetActive(true);
     }
 
 
@@ -12,6 +13,10 @@ public class UI_SelectFood : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
 
     public void OnClick_Back()
     {

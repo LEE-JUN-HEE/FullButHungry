@@ -30,6 +30,7 @@ public class UI_HungryCheck : MonoBehaviour
     
     public void Hide()
     {
+        sv_Check.ResetPosition();
         gameObject.SetActive(false);
     }
 
