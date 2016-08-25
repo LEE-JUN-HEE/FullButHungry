@@ -11,6 +11,8 @@ public class LobbyManager : MonoBehaviour
     public UI_SelectFood SelectFoodUI = null;
     public UI_Mission MissionUI = null;
     public UI_Dic DicUI = null;
+    public UI_PreQA QA = null;
+    public UI_QAResult QAResult = null;
 
 
     //////////////////////////////////////////////////

@@ -39,17 +39,17 @@ public class UI_SelectFood : MonoBehaviour
 
     public void OnClick_Choco()
     {
-
+        LobbyManager.Instance.QA.Show(Common.opentype.choco);
     }
 
     public void OnClick_Candy()
     {
-
+        LobbyManager.Instance.QA.Show(Common.opentype.candy);
     }
 
     public void OnClick_Milk()
     {
-
+        LobbyManager.Instance.QA.Show(Common.opentype.milk);
     }
 
     public void OnClick_Desert()
