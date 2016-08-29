@@ -52,7 +52,7 @@ public class UI_PreQA : MonoBehaviour
         if (++QAIndex >= 4)
         {
             //결과
-            LobbyManager.Instance.QAResult.Show(type, YesCnt <= 2);
+            LobbyManager.Instance.QAResult.Show(type, YesCnt == 0);
             Hide();
         }
         else
@@ -70,7 +70,7 @@ public class UI_PreQA : MonoBehaviour
         if (++QAIndex >= 4)
         {
             //결과
-            LobbyManager.Instance.QAResult.Show(type, YesCnt <= 2);
+            LobbyManager.Instance.QAResult.Show(type, YesCnt == 0);
             Hide();
         }
         else

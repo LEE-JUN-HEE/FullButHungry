@@ -21,7 +21,7 @@ public class PN_Naming : MonoBehaviour {
 
     public void OnClick_Back()
     {
-
+        //씬이동
     }
 
     public void OnClick_Go()

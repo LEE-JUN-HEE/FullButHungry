@@ -18,15 +18,31 @@ public class ChocoMgr : MonoBehaviour
 
     List<int> Select = new List<int>();
 
+    public float EnergyTime = 50;
+    public int EnemyCnt = 0;
+    public List<string> AtkString = new List<string>();
+
+    public bool isPause = true;
+    public bool isGameOver = false;
 
     /// 
     ///  Logic
     /// 
+
     void Awake()
     {
         Instance = this;
         Naming.gameObject.SetActive(true);
         GO_Alram.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (isPause) return;
+        if (isGameOver) return;
+
+        EnergyTime -= Time.unscaledDeltaTime;
+        isGameOver = EnergyTime <= 0;
     }
 
     public void NamingComplete()
@@ -44,6 +60,19 @@ public class ChocoMgr : MonoBehaviour
     {
         GO_Alram.SetActive(false);
         keyInput.Init();
+        keyInput.callback = CheckString;
+        isPause = false;
+    }
+
+    public void Pause(bool _isPause)
+    {
+        isPause = _isPause;
+    }
+
+    public void CheckString(string _arg)
+    {
+        if (AtkString.Contains(_arg))
+            Fire();
     }
 
     public void Fire()
@@ -80,14 +109,10 @@ public class ChocoMgr : MonoBehaviour
     {
 
     }
+    
 
-    ///
-    /// UI
-    ///
 
-    /// <summary>
-    ///  Handler
-    /// </summary>
+
 
     public void OnClick_Start()
     {

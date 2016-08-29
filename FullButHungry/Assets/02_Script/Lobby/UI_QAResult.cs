@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class UI_QAResult : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class UI_QAResult : MonoBehaviour
                 break;
 
             case Common.opentype.choco:
+                SceneManager.LoadScene("02_Choco");
                 break;
 
             case Common.opentype.milk:

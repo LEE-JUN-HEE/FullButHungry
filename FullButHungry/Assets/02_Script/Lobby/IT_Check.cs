@@ -11,9 +11,6 @@ public class IT_Check : MonoBehaviour
 
     public bool isYes = false;
 
-    Color c_white = Color.white;
-    Color c_pink = Color.red;
-
     string str_yes = "Check_Yes";
     string str_no = "Check_NO";
 
