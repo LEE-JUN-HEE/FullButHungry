@@ -7,6 +7,13 @@ public class PN_Ingame : MonoBehaviour
     public List<UISprite> sp_Energy = new List<UISprite>();
     public List<UILabel> lb_Atk = new List<UILabel>();
     public UILabel lb_Count = null;
+    public UIInput Input = null;
+    System.Action func;
+
+    void Awake()
+    {
+        func = update_Empty;
+    }
 
     void Update()
     {
@@ -23,10 +30,37 @@ public class PN_Ingame : MonoBehaviour
         }
 
         lb_Count.text = ChocoMgr.Instance.EnemyCnt.ToString();
+        
+
+    }
+
+    void update_Empty() { }
+
+    void update_Check()
+    {
+        if (!TouchScreenKeyboard.visible)
+        {
+            TouchScreenKeyboard.Open(null);
+            func = update_Empty;
+        }
     }
 
     public void OnClick_Pause()
     {
         ChocoMgr.Instance.Pause(!ChocoMgr.Instance.isPause);
+    }
+
+    public void OnClick_Plus()
+    {
+        ChocoMgr.Instance.Mission();
+    }
+
+    public void OnSubmit_Atk()
+    {
+        ChocoMgr.Instance.CheckString(Input.value);
+        Input.value = "";
+        Input.isSelected = true;
+        func = update_Check;
+        Debug.Log("submit");
     }
 }

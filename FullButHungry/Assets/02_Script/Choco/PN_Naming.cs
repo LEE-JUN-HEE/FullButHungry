@@ -32,7 +32,7 @@ public class PN_Naming : MonoBehaviour {
         }
         else
         {
-            ChocoMgr.Instance.NamingComplete();
+            ChocoMgr.Instance.NamingComplete(KingNameInput.value);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class ChocoMgr : MonoBehaviour
 {
@@ -8,13 +9,15 @@ public class ChocoMgr : MonoBehaviour
 
     //InGame
     public Enemy enemy = null;
+    public Transform Cannon = null;
     public Projectile proj = null;
 
     //UI
     public PN_Naming Naming = null;
-    public KeyInput keyInput = null;
+    //public KeyInput keyInput = null;
     public GameObject GO_Alram = null;
     public PN_Ingame InGameUI = null;
+    public PN_Mission MissionUI = null;
 
     List<int> Select = new List<int>();
 
@@ -24,6 +27,10 @@ public class ChocoMgr : MonoBehaviour
 
     public bool isPause = true;
     public bool isGameOver = false;
+    public bool usechance = false;
+    public string kingName = null;
+
+    System.Action funcupdate;
 
     /// 
     ///  Logic
@@ -34,20 +41,29 @@ public class ChocoMgr : MonoBehaviour
         Instance = this;
         Naming.gameObject.SetActive(true);
         GO_Alram.SetActive(false);
+        funcupdate = update_empty;
     }
 
     void Update()
     {
+        funcupdate();
+    }
+
+    void update_empty() { }
+
+    void update_real()
+    {
         if (isPause) return;
-        if (isGameOver) return;
+        if (isGameOver) { GameOver(); return; }
 
         EnergyTime -= Time.unscaledDeltaTime;
         isGameOver = EnergyTime <= 0;
     }
 
-    public void NamingComplete()
+    public void NamingComplete(string _Kn)
     {
         Naming.gameObject.SetActive(false);
+        kingName = _Kn;
         GO_Alram.SetActive(true);
         for (int i = 0; i < Naming.NamingList.Count; i++)
         {
@@ -59,14 +75,28 @@ public class ChocoMgr : MonoBehaviour
     public void PlayStart()
     {
         GO_Alram.SetActive(false);
-        keyInput.Init();
-        keyInput.callback = CheckString;
+        //keyInput.Init();
+        //keyInput.callback = CheckString;
+        enemy.SetData(Select[Random.Range(0, Select.Count - 1)]);
+        InGameUI.Input.isSelected = true;
         isPause = false;
+        funcupdate = update_real;
     }
 
     public void Pause(bool _isPause)
     {
         isPause = _isPause;
+        InGameUI.Input.isSelected = false;
+    }
+
+    public void GameOver()
+    {
+        //temp
+        //원래 팝업 띄우고 그 이후에 씬로드
+        //경험치 처리
+        UserInfo.ExpUp(50);
+        SceneManager.LoadScene("01_Lobby");
+        funcupdate = update_empty;
     }
 
     public void CheckString(string _arg)
@@ -75,9 +105,25 @@ public class ChocoMgr : MonoBehaviour
             Fire();
     }
 
+    public void Mission()
+    {
+        if (usechance) return;
+        InGameUI.Input.isSelected = false;
+        MissionUI.gameObject.SetActive(true);
+        Pause(true);
+    }
+
+    public void MissionComplete()
+    {
+        Pause(false);
+        InGameUI.Input.isSelected = true;
+        usechance = true;
+        EnergyTime = 50;
+    }
+
     public void Fire()
     {
-        proj.transform.localPosition = enemy.transform.localPosition;
+        proj.transform.localPosition = Cannon.transform.localPosition;
         proj.gameObject.SetActive(true);
     }
 
@@ -88,6 +134,7 @@ public class ChocoMgr : MonoBehaviour
 
     IEnumerator changeEnemy()
     {
+
         for (int i = 0; i < 4; i++)
         {
             enemy.SetAni(i);
@@ -100,14 +147,17 @@ public class ChocoMgr : MonoBehaviour
             yield return null;
         }
 
-        int rand = Random.Range(0, Select.Count - 1);
-        enemy.SetData(Select[rand]);
+        if(++EnemyCnt >= 9)
+        {
+            enemy.SetData(9);
+        }
+        else
+        {
+            int rand = Random.Range(0, Select.Count - 1);
+            enemy.SetData(Select[rand]);
+        }
+
         yield break;
-    }
-
-    public void SetEnemy(int _Index)
-    {
-
     }
     
 

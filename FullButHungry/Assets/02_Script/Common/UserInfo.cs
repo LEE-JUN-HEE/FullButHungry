@@ -38,7 +38,7 @@ public class UserInfo
         }
     }
 
-    static void ExpUp(float value)
+    static public void ExpUp(float value)
     {
         Exp += value;
         if (Exp >= MaxExp)

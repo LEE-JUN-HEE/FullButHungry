@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     public UIProgressBar pb_hp = null;
     public UISprite sp_Enemy = null;
     public UISprite sp_Bomb = null;
+    public UILabel lb_KingName = null;
     public int HP = 0;
     public int index = 0;
 
@@ -15,6 +16,14 @@ public class Enemy : MonoBehaviour
         HP = 3;
         sp_Enemy.spriteName = _index + "_N";
         sp_Enemy.alpha = 1;
+        if(_index >= 9)
+        {
+            lb_KingName.gameObject.SetActive(true);
+            lb_KingName.text = ChocoMgr.Instance.kingName;
+        }
+        else
+            lb_KingName.gameObject.SetActive(false);
+
         sp_Bomb.gameObject.SetActive(false);
     }
 
@@ -50,16 +59,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnCollide2D(Collider2D _col)
+    void OnTriggerEnter2D(Collider2D _col)
     {
         if (_col.tag == "Proj")
         {
             HP--;
-            pb_hp.value = HP / 3;
+            pb_hp.value = (float)HP / 3f;
             _col.gameObject.SetActive(false);
             if (HP <= 0)
             {
-
+                ChocoMgr.Instance.ChangeEnemy();
             }
         }
     }
