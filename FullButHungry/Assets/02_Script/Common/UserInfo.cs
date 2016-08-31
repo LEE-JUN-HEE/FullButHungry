@@ -46,6 +46,8 @@ public class UserInfo
             Level += 1;
             Exp -= MaxExp;
         }
+        PlayerPrefs.SetFloat("Exp", Exp);
+        PlayerPrefs.SetInt("Level", Level);
         PlayerPrefs.Save();
     }
 }

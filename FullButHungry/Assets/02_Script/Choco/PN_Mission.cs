@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class PN_Mission : MonoBehaviour {
-    public UIInput Input = null;
     
     public void OnClick_Submit()
     {

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
-public class PN_Naming : MonoBehaviour {
-
+public class PN_Naming : MonoBehaviour
+{
     public List<IT_Naming> NamingList = new List<IT_Naming>();
     public UIGrid gr_Naming = null;
     public UIInput KingNameInput = null;
@@ -21,7 +22,7 @@ public class PN_Naming : MonoBehaviour {
 
     public void OnClick_Back()
     {
-        //씬이동
+        SceneManager.LoadScene("01_Lobby");
     }
 
     public void OnClick_Go()
@@ -32,7 +33,20 @@ public class PN_Naming : MonoBehaviour {
         }
         else
         {
-            ChocoMgr.Instance.NamingComplete(KingNameInput.value);
+            int cnt = 0;
+            for (int i = 0; i < NamingList.Count; i++)
+            {
+                if (NamingList[i].isSelect) cnt++;
+            }
+
+            if (cnt == 0)
+            {
+                ChocoMgr.Instance.AlertUI.Show();
+            }
+            else
+            {
+                ChocoMgr.Instance.NamingComplete(KingNameInput.value);
+            }
         }
     }
 }

@@ -6,14 +6,27 @@ public class Enemy : MonoBehaviour
     public UIProgressBar pb_hp = null;
     public UISprite sp_Enemy = null;
     public UISprite sp_Bomb = null;
+    public UISprite sp_thumb = null;
     public UILabel lb_KingName = null;
     public int HP = 0;
     public int index = 0;
 
+    void Update()
+    {
+        if (pb_hp.value == 0)
+            sp_thumb.alpha = 0;
+        else
+            sp_thumb.alpha = 1;
+
+    }
+
+
     public void SetData(int _index)
     {
         index = _index;
+
         HP = 3;
+        pb_hp.value = 1f;
         sp_Enemy.spriteName = _index + "_N";
         sp_Enemy.alpha = 1;
         if(_index >= 9)
@@ -40,19 +53,19 @@ public class Enemy : MonoBehaviour
                 break;
             case 1:
                 sp_Enemy.spriteName = index + "_N";
-                sp_Bomb.spriteName = "Ani_S";
+                sp_Bomb.spriteName = "Ani_M";
                 sp_Bomb.width = 149;
                 sp_Bomb.height = 109;
                 break;
             case 2:
                 sp_Enemy.spriteName = index + "_N";
-                sp_Bomb.spriteName = "Ani_S";
+                sp_Bomb.spriteName = "Ani_L";
                 sp_Bomb.width = 201;
                 sp_Bomb.height = 145;
                 break;
             case 3:
-                sp_Enemy.spriteName = index + "_N";
-                sp_Bomb.spriteName = "Ani_D";
+                sp_Enemy.spriteName = index + "_D";
+                sp_Bomb.spriteName = "Ani_L";
                 sp_Bomb.width = 201;
                 sp_Bomb.height = 145;
                 break;
@@ -65,7 +78,7 @@ public class Enemy : MonoBehaviour
         {
             HP--;
             pb_hp.value = (float)HP / 3f;
-            _col.gameObject.SetActive(false);
+            Destroy(_col.gameObject);
             if (HP <= 0)
             {
                 ChocoMgr.Instance.ChangeEnemy();

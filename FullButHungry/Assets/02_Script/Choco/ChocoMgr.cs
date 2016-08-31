@@ -15,9 +15,12 @@ public class ChocoMgr : MonoBehaviour
     //UI
     public PN_Naming Naming = null;
     //public KeyInput keyInput = null;
+    public GameObject GO_Pause = null;
     public GameObject GO_Alram = null;
     public PN_Ingame InGameUI = null;
     public PN_Mission MissionUI = null;
+    public PN_Alert AlertUI = null;
+    public PN_Result ResultUI = null;
 
     List<int> Select = new List<int>();
 
@@ -78,7 +81,6 @@ public class ChocoMgr : MonoBehaviour
         //keyInput.Init();
         //keyInput.callback = CheckString;
         enemy.SetData(Select[Random.Range(0, Select.Count - 1)]);
-        InGameUI.Input.isSelected = true;
         isPause = false;
         funcupdate = update_real;
     }
@@ -86,16 +88,14 @@ public class ChocoMgr : MonoBehaviour
     public void Pause(bool _isPause)
     {
         isPause = _isPause;
-        InGameUI.Input.isSelected = false;
+        GO_Pause.SetActive(isPause);
     }
 
     public void GameOver()
     {
-        //temp
-        //원래 팝업 띄우고 그 이후에 씬로드
-        //경험치 처리
         UserInfo.ExpUp(50);
-        SceneManager.LoadScene("01_Lobby");
+        ResultUI.Show();
+
         funcupdate = update_empty;
     }
 
@@ -116,15 +116,17 @@ public class ChocoMgr : MonoBehaviour
     public void MissionComplete()
     {
         Pause(false);
-        InGameUI.Input.isSelected = true;
         usechance = true;
         EnergyTime = 50;
     }
 
     public void Fire()
     {
-        proj.transform.localPosition = Cannon.transform.localPosition;
-        proj.gameObject.SetActive(true);
+        GameObject go = (GameObject) Instantiate(proj.gameObject, Cannon.transform.localPosition, Quaternion.identity, Cannon.transform);
+        go.transform.localPosition = Vector2.zero;
+        go.SetActive(true);
+        //proj.transform.localPosition = Cannon.transform.localPosition;
+        //proj.gameObject.SetActive(true);
     }
 
     public void ChangeEnemy()
