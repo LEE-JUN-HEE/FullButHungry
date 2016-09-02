@@ -6,7 +6,7 @@ public class UserInfo
 {
     //영구 저장
     //어떤게임 몇번 플레이했는지도 추가될구 있음
-    static public int Level = 0;
+    static public int Level = 1;
     static public float Exp = 0;
     static public float MaxExp = 150;
     static public float NormalizedExp { get { return Exp / MaxExp; } }

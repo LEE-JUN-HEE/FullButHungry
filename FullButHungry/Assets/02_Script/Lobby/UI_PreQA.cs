@@ -14,13 +14,13 @@ public class UI_PreQA : MonoBehaviour
     List<string> ask;
     Common.opentype type = Common.opentype.choco;
     int QAIndex = 0;
-    int YesCnt = 0;
+    int NOCnt = 0;
 
     public void Show(Common.opentype _type)
     {
         type = _type;
         QAIndex = 0;
-        YesCnt = 0;
+        NOCnt = 0;
         spot.ForEach(x => x.SetActive(false));
         spot[QAIndex].SetActive(true);
 
@@ -48,11 +48,10 @@ public class UI_PreQA : MonoBehaviour
 
     public void OnClick_Yes()
     {
-        YesCnt++;
         if (++QAIndex >= 4)
         {
             //결과
-            LobbyManager.Instance.QAResult.Show(type, YesCnt == 0);
+            LobbyManager.Instance.QAResult.Show(type, NOCnt == 0);
             Hide();
         }
         else
@@ -67,10 +66,11 @@ public class UI_PreQA : MonoBehaviour
 
     public void OnClick_No()
     {
+        NOCnt++;
         if (++QAIndex >= 4)
         {
             //결과
-            LobbyManager.Instance.QAResult.Show(type, YesCnt == 0);
+            LobbyManager.Instance.QAResult.Show(type, NOCnt == 0);
             Hide();
         }
         else

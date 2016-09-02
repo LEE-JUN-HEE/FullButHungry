@@ -12,7 +12,7 @@ public class Milk_Enemy : MonoBehaviour
     }
 
     public position pos = position.LB;
-    public UISprite sp_Main = null;
+    public Transform sp_Main = null;
     public TweenRotation tw_rot = null;
 
     System.Action func;
@@ -34,27 +34,53 @@ public class Milk_Enemy : MonoBehaviour
         switch (pos)
         {
             case position.LB:
-                transform.Translate(new Vector2(-1, -1));
+                transform.parent.Translate(new Vector2(-1, -1) * Time.unscaledDeltaTime);
                 break;
 
             case position.LT:
-                transform.Translate(new Vector2(-1, 1));
+                transform.parent.Translate(new Vector2(-1, 1) * Time.unscaledDeltaTime);
                 break;
 
             case position.RB:
-                transform.Translate(new Vector2(1, -1));
+                transform.parent.Translate(new Vector2(1, -1) * Time.unscaledDeltaTime);
                 break;
 
             case position.RT:
-                transform.Translate(new Vector2(1, 1));
+                transform.parent.Translate(new Vector2(1, 1) * Time.unscaledDeltaTime);
                 break;
         }
     }
 
-    public void SetData(position _pos, int _index)
+    public void SetData(int _index)
     {
-        pos = _pos;
+        Vector2 __pos;
+        switch (pos)
+        {
+            case position.LB:
+                __pos = new Vector2(-160, -25);
+                break;
+
+            case position.LT:
+                __pos = new Vector2(-187, 206);
+                break;
+
+            case position.RB:
+                __pos = new Vector2(236, -25);
+                break;
+
+            case position.RT:
+                __pos = new Vector2(196, 206);
+                break;
+
+            default:
+                __pos = Vector2.zero;
+                break;
+        }
+
+        transform.parent.localPosition = __pos;
+        sp_Main.localRotation = Quaternion.identity;
         tw_rot.enabled = false;
+        sp_Main.GetComponent<SpriteRenderer>().sprite = MilkMgr.Instance.NormalSprite[_index];
         func = update_empty;
     }
 

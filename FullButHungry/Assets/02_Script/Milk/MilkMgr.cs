@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class MilkMgr : MonoBehaviour
 {
-    public List<Milk_Enemy> Enemys = new List<Milk_Enemy>();
-
     public static MilkMgr Instance = null;
-    
+
+    public List<Sprite> NormalSprite = new List<Sprite>();
+    public List<Sprite> PressedSprite = new List<Sprite>();
 
     //UI
     public PN_MilkNaming Naming = null;
@@ -15,10 +15,14 @@ public class MilkMgr : MonoBehaviour
     public GameObject GO_Pause = null;
     public GameObject GO_Alram = null;
     public PN_MilkIngame InGameUI = null;
-    public PN_Mission MissionUI = null;
+    public PN_MilkMission MissionUI = null;
     public PN_Alert AlertUI = null;
-    public PN_Result ResultUI = null;
+    public PN_MilkResult ResultUI = null;
 
+
+    //Logic
+    public List<Milk_Enemy> Enemys = new List<Milk_Enemy>();
+    public Milk_Bomb Bomb = null;
     List<int> Select = new List<int>();
 
     public float EnergyTime = 50;
@@ -28,6 +32,7 @@ public class MilkMgr : MonoBehaviour
     public bool isPause = true;
     public bool isGameOver = false;
     public bool usechance = false;
+    public int atkCnt = 0;
 
     System.Action funcupdate;
 
@@ -59,7 +64,7 @@ public class MilkMgr : MonoBehaviour
         isGameOver = EnergyTime <= 0;
     }
 
-    public void NamingComplete(string _Kn)
+    public void NamingComplete()
     {
         Naming.gameObject.SetActive(false);
         GO_Alram.SetActive(true);
@@ -75,7 +80,8 @@ public class MilkMgr : MonoBehaviour
         GO_Alram.SetActive(false);
         //keyInput.Init();
         //keyInput.callback = CheckString;
-        //enemy.SetData(Select[Random.Range(0, Select.Count - 1)]);
+        Bomb.Set(0);
+        Enemys.ForEach(x => x.SetData(Select[Random.Range(0, Select.Count - 1)]));
         isPause = false;
         funcupdate = update_real;
     }
@@ -117,42 +123,28 @@ public class MilkMgr : MonoBehaviour
 
     public void Fire()
     {
-        //GameObject go = (GameObject)Instantiate(proj.gameObject, Cannon.transform.localPosition, Quaternion.identity, Cannon.transform);
-        //go.transform.localPosition = Vector2.zero;
-        //go.SetActive(true);
-        //proj.transform.localPosition = Cannon.transform.localPosition;
-        //proj.gameObject.SetActive(true);
+        Bomb.Set(++atkCnt);
+    }
+
+    public void Boom()
+    {
+        Enemys.ForEach(x => x.Died());
+        ChangeEnemy();
     }
 
     public void ChangeEnemy()
     {
+        atkCnt = 0;
         StartCoroutine(changeEnemy());
     }
 
     IEnumerator changeEnemy()
     {
+        yield return new WaitForSeconds(1.5f);
 
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    enemy.SetAni(i);
-        //    yield return new WaitForSeconds(0.3f);
-        //}
-
-        //while (enemy.sp_Enemy.alpha > 0)
-        //{
-        //    enemy.sp_Enemy.alpha -= 0.2f;
-        //    yield return null;
-        //}
-
-        //if (++EnemyCnt >= 9)
-        //{
-        //    enemy.SetData(9);
-        //}
-        //else
-        //{
-        //    int rand = Random.Range(0, Select.Count - 1);
-        //    enemy.SetData(Select[rand]);
-        //}
+        EnemyCnt++;
+        Enemys.ForEach(x => x.SetData(Select[Random.Range(0, Select.Count - 1)]));
+        Bomb.Set(0);
 
         yield break;
     }

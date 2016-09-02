@@ -64,6 +64,7 @@ public class UI_QAResult : MonoBehaviour
                 break;
 
             case Common.opentype.milk:
+                SceneManager.LoadScene("03_Milk");
                 break;
         }
     }

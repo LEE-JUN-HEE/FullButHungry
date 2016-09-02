@@ -8,6 +8,7 @@ public class PN_MilkIngame : MonoBehaviour
     public List<UILabel> lb_Atk = new List<UILabel>();
     public UILabel lb_Count = null;
     public UIInput Input = null;
+    public UISprite sp_Input = null;
     public UILabel debug = null;
     bool isSubmit = false;
 
@@ -22,6 +23,9 @@ public class PN_MilkIngame : MonoBehaviour
             if (i < 5) sp_Energy[i].spriteName = "energy_empty";
 
         lb_Count.text = MilkMgr.Instance.EnemyCnt.ToString();
+
+        sp_Input.spriteName = (Input.isSelected) ? "Atk_P" : "Atk";
+        sp_Input.height = (Input.isSelected) ?  127 : 147;
     }
 
     //void update_Empty() { }

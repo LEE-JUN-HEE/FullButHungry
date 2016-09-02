@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class UI_EmotionStorage : MonoBehaviour
@@ -40,7 +41,7 @@ public class UI_EmotionStorage : MonoBehaviour
 
     public void OnClick_Choco()
     {
-
+        SceneManager.LoadScene("02_Choco");
     }
 
     public void OnClick_Candy()
@@ -50,7 +51,7 @@ public class UI_EmotionStorage : MonoBehaviour
 
     public void OnClick_Milk()
     {
-
+        SceneManager.LoadScene("03_Milk");
     }
 
     public void OnClick_Desert()

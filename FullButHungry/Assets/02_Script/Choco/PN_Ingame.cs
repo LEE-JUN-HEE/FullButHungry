@@ -7,6 +7,7 @@ public class PN_Ingame : MonoBehaviour
     public List<UISprite> sp_Energy = new List<UISprite>();
     public List<UILabel> lb_Atk = new List<UILabel>();
     public UILabel lb_Count = null;
+    public UISprite sp_Input = null;
     public UIInput Input = null;
     public UILabel debug = null;
     bool isSubmit = false;
@@ -22,6 +23,9 @@ public class PN_Ingame : MonoBehaviour
             if (i < 5) sp_Energy[i].spriteName = "energy_empty";
 
         lb_Count.text = ChocoMgr.Instance.EnemyCnt.ToString();
+
+        sp_Input.spriteName = (Input.isSelected) ? "Atk_P" : "Atk";
+        sp_Input.height = (Input.isSelected) ? 127 : 147;
     }
 
     //void update_Empty() { }
@@ -42,7 +46,7 @@ public class PN_Ingame : MonoBehaviour
 
     public void OnClick_Pause()
     {
-        ChocoMgr.Instance.Pause(!ChocoMgr.Instance.isPause);
+        ChocoMgr.Instance.Pause(!MilkMgr.Instance.isPause);
     }
 
     public void OnClick_Plus()
