@@ -21,6 +21,7 @@ public class ChocoMgr : MonoBehaviour
     public PN_Mission MissionUI = null;
     public PN_Alert AlertUI = null;
     public PN_Result ResultUI = null;
+    public PN_Pause PauseUI = null;
 
     List<int> Select = new List<int>();
 
@@ -88,7 +89,6 @@ public class ChocoMgr : MonoBehaviour
     public void Pause(bool _isPause)
     {
         isPause = _isPause;
-        GO_Pause.SetActive(isPause);
     }
 
     public void GameOver()
@@ -125,6 +125,8 @@ public class ChocoMgr : MonoBehaviour
         GameObject go = (GameObject) Instantiate(proj.gameObject, Cannon.transform.localPosition, Quaternion.identity, Cannon.transform);
         go.transform.localPosition = Vector2.zero;
         go.SetActive(true);
+
+        Debug.Log(go.tag);
         //proj.transform.localPosition = Cannon.transform.localPosition;
         //proj.gameObject.SetActive(true);
     }

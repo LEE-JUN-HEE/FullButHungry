@@ -148,6 +148,7 @@ public class UI_Base : MonoBehaviour
 
     public void OnClick_Dic()
     {
+        LobbyManager.Instance.DicUI.Show();
     }
 
     public void OnClick_Brain()

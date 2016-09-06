@@ -18,6 +18,7 @@ public class MilkMgr : MonoBehaviour
     public PN_MilkMission MissionUI = null;
     public PN_Alert AlertUI = null;
     public PN_MilkResult ResultUI = null;
+    public PN_MilkPause PauseUI = null;
 
 
     //Logic
@@ -89,7 +90,6 @@ public class MilkMgr : MonoBehaviour
     public void Pause(bool _isPause)
     {
         isPause = _isPause;
-        GO_Pause.SetActive(isPause);
     }
 
     public void GameOver()
@@ -142,7 +142,7 @@ public class MilkMgr : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        EnemyCnt++;
+        EnemyCnt+=4;
         Enemys.ForEach(x => x.SetData(Select[Random.Range(0, Select.Count - 1)]));
         Bomb.Set(0);
 

@@ -21,6 +21,7 @@ public class PN_MilkNaming : MonoBehaviour
 
     public void OnClick_Back()
     {
+        GameManager.OpenType = Common.opentype.milk;
         SceneManager.LoadScene("01_Lobby");
     }
 

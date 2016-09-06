@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
             sp_thumb.alpha = 0;
         else
             sp_thumb.alpha = 1;
-
     }
 
 
@@ -74,7 +73,8 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D _col)
     {
-        if (_col.tag == "Proj")
+        Debug.Log("Col");
+        if (_col.gameObject.tag == "Proj")
         {
             HP--;
             pb_hp.value = (float)HP / 3f;
@@ -82,6 +82,12 @@ public class Enemy : MonoBehaviour
             if (HP <= 0)
             {
                 ChocoMgr.Instance.ChangeEnemy();
+            }
+            else
+            {
+                sp_Bomb.spriteName = "Ani_S";
+                sp_Bomb.width = 115;
+                sp_Bomb.height = 84;
             }
         }
     }

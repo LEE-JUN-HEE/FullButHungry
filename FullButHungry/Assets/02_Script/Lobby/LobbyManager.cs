@@ -13,6 +13,7 @@ public class LobbyManager : MonoBehaviour
     public UI_Dic DicUI = null;
     public UI_PreQA QA = null;
     public UI_QAResult QAResult = null;
+    public UI_DicInfo DicInfoUI = null;
 
 
     //////////////////////////////////////////////////
@@ -22,6 +23,24 @@ public class LobbyManager : MonoBehaviour
     {
         Instance = this;
         BaseUI.Init();
+        switch (GameManager.OpenType)
+        {
+            case Common.opentype.choco:
+                QAResult.Show(GameManager.OpenType, true);
+                break;
+
+            case Common.opentype.milk:
+                QAResult.Show(GameManager.OpenType, true);
+                break;
+
+            case Common.opentype.candy:
+                QAResult.Show(GameManager.OpenType, true);
+                break;
+
+            case Common.opentype.none:
+                break;
+        }
+        GameManager.OpenType = Common.opentype.none;
     }
 
 }

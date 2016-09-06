@@ -7,6 +7,7 @@ public class Common
 {
     public enum opentype
     {
+        none,
         choco,
         candy,
         milk,
