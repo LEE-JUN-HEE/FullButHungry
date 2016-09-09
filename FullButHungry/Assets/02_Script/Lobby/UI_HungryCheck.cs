@@ -14,14 +14,14 @@ public class UI_HungryCheck : MonoBehaviour
             //질문 세팅
             for (int i = 0; i < 10; i++)
             {
-                ITList[i].SetData(i, "질문 " + i, false);
+                ITList[i].SetData(i, false);
             }
         }
         else
         {
             for (int i = 0; i < 10; i++)
             {
-                ITList[i].SetData(i, "질문 " + i, UserInfo.Hungry[i]);
+                ITList[i].SetData(i, UserInfo.Hungry[i]);
             }
         }
         sv_Check.ResetPosition();

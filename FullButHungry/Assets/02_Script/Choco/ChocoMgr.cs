@@ -7,6 +7,9 @@ public class ChocoMgr : MonoBehaviour
 {
     public static ChocoMgr Instance = null;
 
+    string[] str_atk = { "혹시 요즘 우울한일\n있었어?", "무언가가 널 실망스럽게\n만들었니?", "혹시 최근에 화가 나는\n일이라도 있었니?", "슬픈 감정을 마음속으로\n숨기고 있는거야?" };
+    string Boss = "";
+
     //InGame
     public Enemy enemy = null;
     public Transform Cannon = null;

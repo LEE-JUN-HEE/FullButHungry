@@ -72,8 +72,23 @@ public class UI_Base : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                if (UserInfo.Hungry[i])
-                    count += 10;
+                switch (i)
+                {
+                    case 1:
+                    case 3:
+                    case 4:
+                    case 6:
+                    case 8:
+                    case 9:
+                        if (UserInfo.Hungry[i])
+                            count += 10;
+                        break;
+
+                    default:
+                        if (!UserInfo.Hungry[i])
+                            count += 10;
+                        break;
+                }
             }
         }
         string talk = null;
