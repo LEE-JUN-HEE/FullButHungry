@@ -7,8 +7,27 @@ public class ChocoMgr : MonoBehaviour
 {
     public static ChocoMgr Instance = null;
 
-    string[] str_atk = { "혹시 요즘 우울한일\n있었어?", "무언가가 널 실망스럽게\n만들었니?", "혹시 최근에 화가 나는\n일이라도 있었니?", "슬픈 감정을 마음속으로\n숨기고 있는거야?" };
-    string Boss = "";
+    string[] str_atk = 
+    {
+        "사랑해",
+        "좋아해",
+        "아름다워",
+        "멋져",
+        "설레여",
+        "사랑",
+        "애정",
+        "행복",
+        "기뻐"
+    };
+
+    string[] str_Boss = 
+    {
+        "나의 내일은 더 빛날 거야",
+        "애쓰지 않아도 괜찮아",
+        "괜찮아 그럴 수 있어",
+        "난 지금 잘하고 있어",
+        "내가 있어서 행복해"
+    };
 
     //InGame
     public Enemy enemy = null;
@@ -85,6 +104,7 @@ public class ChocoMgr : MonoBehaviour
         //keyInput.Init();
         //keyInput.callback = CheckString;
         enemy.SetData(Select[Random.Range(0, Select.Count - 1)]);
+        SetString();
         isPause = false;
         funcupdate = update_real;
     }
@@ -125,13 +145,28 @@ public class ChocoMgr : MonoBehaviour
 
     public void Fire()
     {
-        GameObject go = (GameObject) Instantiate(proj.gameObject, Cannon.transform.localPosition, Quaternion.identity, Cannon.transform);
+        GameObject go = (GameObject)Instantiate(proj.gameObject, Cannon.transform.localPosition, Quaternion.identity, Cannon.transform);
         go.transform.localPosition = Vector2.zero;
         go.SetActive(true);
 
         Debug.Log(go.tag);
         //proj.transform.localPosition = Cannon.transform.localPosition;
         //proj.gameObject.SetActive(true);
+    }
+
+    public void SetString()
+    {
+        AtkString.Clear();
+        if (EnemyCnt % 3 != 0)
+        {
+            AtkString.Add(str_atk[(EnemyCnt * 3) % 9]);
+            AtkString.Add(str_atk[(EnemyCnt * 3 + 1) % 9]);
+            AtkString.Add(str_atk[(EnemyCnt * 3 + 2) % 9]);
+        }
+        else
+        {
+            AtkString.Add(str_Boss[Random.Range(0, str_Boss.Length -1)]);
+        }
     }
 
     public void ChangeEnemy()
@@ -154,7 +189,7 @@ public class ChocoMgr : MonoBehaviour
             yield return null;
         }
 
-        if(++EnemyCnt >= 9)
+        if (++EnemyCnt >= 9)
         {
             enemy.SetData(9);
         }
@@ -163,10 +198,11 @@ public class ChocoMgr : MonoBehaviour
             int rand = Random.Range(0, Select.Count - 1);
             enemy.SetData(Select[rand]);
         }
+        SetString();
 
         yield break;
     }
-    
+
 
 
 

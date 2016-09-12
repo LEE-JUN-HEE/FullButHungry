@@ -26,6 +26,13 @@ public class PN_Ingame : MonoBehaviour
 
         sp_Input.spriteName = (Input.isSelected) ? "Atk_P" : "Atk";
         sp_Input.height = (Input.isSelected) ? 127 : 147;
+
+        if(ChocoMgr.Instance.AtkString.Count > 1)
+        {
+            lb_Atk[0].text = ChocoMgr.Instance.AtkString[0];
+            lb_Atk[1].text = ChocoMgr.Instance.AtkString[1];
+            lb_Atk[2].text = ChocoMgr.Instance.AtkString[2];
+        }
     }
 
     //void update_Empty() { }
