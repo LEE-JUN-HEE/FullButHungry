@@ -6,8 +6,29 @@ public class MilkMgr : MonoBehaviour
 {
     public static MilkMgr Instance = null;
 
-    string[] str_atk = { "혹시 요즘 우울한일\n있었어?", "무언가가 널 실망스럽게\n만들었니?", "혹시 최근에 화가 나는\n일이라도 있었니?", "슬픈 감정을 마음속으로\n숨기고 있는거야?" };
-    string Boss = "";
+    string[] str_atk =
+    {
+        "기뻐",
+        "웃음",
+        "진정돼",
+        "따뜻해",
+        "편안해",
+        "기분좋아",
+        "행복해",
+        "즐거워",
+        "기뻐",
+    };
+
+    string[] str_Boss =
+    {
+        "난 지금 굉장히 평온해",
+        "난 행복한 사람이야",
+        "긴장하지 않아도 돼",
+        "나는 빛나는 사람이야",
+        "나는 옳은 길을 걷고 있어",
+        "나는 아무것도 두렵지 않아",
+        "나는 나를 믿어",
+    };
 
     public List<Sprite> NormalSprite = new List<Sprite>();
     public List<Sprite> PressedSprite = new List<Sprite>();
@@ -33,6 +54,7 @@ public class MilkMgr : MonoBehaviour
     public int EnemyCnt = 0;
     public List<string> AtkString = new List<string>();
 
+    public bool IsBoss { get; set; }
     public bool isPause = true;
     public bool isGameOver = false;
     public bool usechance = false;
@@ -84,6 +106,11 @@ public class MilkMgr : MonoBehaviour
         GO_Alram.SetActive(false);
         //keyInput.Init();
         //keyInput.callback = CheckString;
+        AtkString.Add(str_atk[(EnemyCnt * 3) % 9]);
+        AtkString.Add(str_atk[(EnemyCnt * 3 + 1) % 9]);
+        AtkString.Add(str_atk[(EnemyCnt * 3 + 2) % 9]);
+        IsBoss = false;
+
         Bomb.Set(0);
         Enemys.ForEach(x => x.SetData(Select[Random.Range(0, Select.Count - 1)]));
         isPause = false;
@@ -126,7 +153,27 @@ public class MilkMgr : MonoBehaviour
 
     public void Fire()
     {
-        Bomb.Set(++atkCnt);
+        if (IsBoss)
+            Bomb.Set(3);
+        else
+            Bomb.Set(++atkCnt);
+    }
+
+    public void SetString()
+    {
+        AtkString.Clear();
+        if (EnemyCnt % 4 != 0)
+        {
+            AtkString.Add(str_atk[(EnemyCnt * 3) % 9]);
+            AtkString.Add(str_atk[(EnemyCnt * 3 + 1) % 9]);
+            AtkString.Add(str_atk[(EnemyCnt * 3 + 2) % 9]);
+            IsBoss = false;
+        }
+        else
+        {
+            AtkString.Add(str_Boss[Random.Range(0, str_Boss.Length - 1)]);
+            IsBoss = true;
+        }
     }
 
     public void Boom()
@@ -145,9 +192,11 @@ public class MilkMgr : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        EnemyCnt+=4;
+        EnemyCnt++;
+        SetString();
         Enemys.ForEach(x => x.SetData(Select[Random.Range(0, Select.Count - 1)]));
         Bomb.Set(0);
+
 
         yield break;
     }

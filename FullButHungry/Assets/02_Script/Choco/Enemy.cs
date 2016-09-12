@@ -76,7 +76,11 @@ public class Enemy : MonoBehaviour
         Debug.Log("Col");
         if (_col.gameObject.tag == "Proj")
         {
-            HP--;
+            if (ChocoMgr.Instance.IsBoss)
+                HP-= 3;
+            else
+                HP--;
+
             pb_hp.value = (float)HP / 3f;
             Destroy(_col.gameObject);
             if (HP <= 0)

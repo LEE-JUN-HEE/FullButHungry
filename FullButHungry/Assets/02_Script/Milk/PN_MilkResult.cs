@@ -12,7 +12,7 @@ public class PN_MilkResult : MonoBehaviour {
     {
         lb_Level.text = UserInfo.Level.ToString();
         pb_level.value = UserInfo.NormalizedExp;
-        lb_Count.text = MilkMgr.Instance.EnemyCnt.ToString();
+        lb_Count.text = (MilkMgr.Instance.EnemyCnt * 4).ToString();
         MilkMgr.Instance.InGameUI.Input.isSelected = false;
         gameObject.SetActive(true);
     }

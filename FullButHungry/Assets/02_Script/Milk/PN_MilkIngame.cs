@@ -22,10 +22,23 @@ public class PN_MilkIngame : MonoBehaviour
         for (int i = (int)MilkMgr.Instance.EnergyTime / 10 + 1; i < 5; i++)
             if (i < 5) sp_Energy[i].spriteName = "energy_empty";
 
-        lb_Count.text = MilkMgr.Instance.EnemyCnt.ToString();
+        lb_Count.text = (MilkMgr.Instance.EnemyCnt * 4).ToString();
 
         sp_Input.spriteName = (Input.isSelected) ? "Atk_P" : "Atk";
         sp_Input.height = (Input.isSelected) ?  127 : 147;
+
+        if (MilkMgr.Instance.IsBoss == false)
+        {
+            lb_Atk[0].text = MilkMgr.Instance.AtkString[0];
+            lb_Atk[1].text = MilkMgr.Instance.AtkString[1];
+            lb_Atk[2].text = MilkMgr.Instance.AtkString[2];
+        }
+        else
+        {
+            lb_Atk[0].text = "";
+            lb_Atk[1].text = MilkMgr.Instance.AtkString[0];
+            lb_Atk[2].text = "";
+        }
     }
 
     //void update_Empty() { }

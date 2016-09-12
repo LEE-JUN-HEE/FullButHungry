@@ -51,6 +51,7 @@ public class ChocoMgr : MonoBehaviour
     public int EnemyCnt = 0;
     public List<string> AtkString = new List<string>();
 
+    public bool IsBoss { get; set; }
     public bool isPause = true;
     public bool isGameOver = false;
     public bool usechance = false;
@@ -68,6 +69,7 @@ public class ChocoMgr : MonoBehaviour
         Naming.gameObject.SetActive(true);
         GO_Alram.SetActive(false);
         funcupdate = update_empty;
+        IsBoss = false;
     }
 
     void Update()
@@ -104,7 +106,12 @@ public class ChocoMgr : MonoBehaviour
         //keyInput.Init();
         //keyInput.callback = CheckString;
         enemy.SetData(Select[Random.Range(0, Select.Count - 1)]);
-        SetString();
+
+        AtkString.Add(str_atk[(EnemyCnt * 3) % 9]);
+        AtkString.Add(str_atk[(EnemyCnt * 3 + 1) % 9]);
+        AtkString.Add(str_atk[(EnemyCnt * 3 + 2) % 9]);
+
+        IsBoss = false;
         isPause = false;
         funcupdate = update_real;
     }
@@ -157,15 +164,17 @@ public class ChocoMgr : MonoBehaviour
     public void SetString()
     {
         AtkString.Clear();
-        if (EnemyCnt % 3 != 0)
+        if (EnemyCnt % 4 != 0)
         {
             AtkString.Add(str_atk[(EnemyCnt * 3) % 9]);
             AtkString.Add(str_atk[(EnemyCnt * 3 + 1) % 9]);
             AtkString.Add(str_atk[(EnemyCnt * 3 + 2) % 9]);
+            IsBoss = false;
         }
         else
         {
             AtkString.Add(str_Boss[Random.Range(0, str_Boss.Length -1)]);
+            IsBoss = true;
         }
     }
 
@@ -189,7 +198,7 @@ public class ChocoMgr : MonoBehaviour
             yield return null;
         }
 
-        if (++EnemyCnt >= 9)
+        if (++EnemyCnt % 4 == 0)
         {
             enemy.SetData(9);
         }
