@@ -10,17 +10,16 @@ public class PN_MilkIngame : MonoBehaviour
     public UIInput Input = null;
     public UISprite sp_Input = null;
     public UILabel debug = null;
-    bool isSubmit = false;
 
     void Update()
     {
         if (MilkMgr.Instance.isPause) return;
 
         for (int i = 0; i < MilkMgr.Instance.EnergyTime / 10 + 1; i++)
-            if (i < 5) sp_Energy[i].spriteName = "energy";
+            if (i < 5 && i >= 0) sp_Energy[i].spriteName = "energy";
 
         for (int i = (int)MilkMgr.Instance.EnergyTime / 10 + 1; i < 5; i++)
-            if (i < 5) sp_Energy[i].spriteName = "energy_empty";
+            if (i < 5 && i >=0) sp_Energy[i].spriteName = "energy_empty";
 
         lb_Count.text = (MilkMgr.Instance.EnemyCnt * 4).ToString();
 

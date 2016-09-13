@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Candy_IT_Ingame : MonoBehaviour {
+public class Candy_IT_Ingame : MonoBehaviour
+{
+    public SpriteRenderer sp_Main = null;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    bool isReady = false;
+    bool isDead = false;
+
+    public void SetData()
+    {
+
+    }
+
+    IEnumerator Ready()
+    {
+        yield return null;
+    }
+
+    IEnumerator Dead()
+    {
+        yield return null;
+    }
+
+    public void OnClick_Hit()
+    {
+        if (isReady == false || isDead == true) return;
+    }
 }

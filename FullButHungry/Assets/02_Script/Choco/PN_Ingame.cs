@@ -17,10 +17,10 @@ public class PN_Ingame : MonoBehaviour
         if (ChocoMgr.Instance.isPause) return;
 
         for (int i = 0; i < ChocoMgr.Instance.EnergyTime / 10 + 1 ; i++)
-            if(i < 5)  sp_Energy[i].spriteName = "energy";
+            if(i < 5 && i >= 0)  sp_Energy[i].spriteName = "energy";
 
         for (int i = (int)ChocoMgr.Instance.EnergyTime / 10  + 1; i < 5; i++)
-            if (i < 5) sp_Energy[i].spriteName = "energy_empty";
+            if (i < 5 && i >= 0) sp_Energy[i].spriteName = "energy_empty";
 
         lb_Count.text = ChocoMgr.Instance.EnemyCnt.ToString();
 
