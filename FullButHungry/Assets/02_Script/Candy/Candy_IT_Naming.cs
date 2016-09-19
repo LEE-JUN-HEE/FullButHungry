@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Candy_IT_Naming : MonoBehaviour {
+public class Candy_IT_Naming : MonoBehaviour
+{
+    public SpriteRenderer sp_Main = null;
+    public bool isSelect = false;
+    public int index = -1;
+    
+    public void SetData(int _index)
+    {
+        index = _index;
+        sp_Main.sprite = CandyMgr.Instance.NormalSprite[_index];
+        //sp_Main.spriteName = _index + "_N";
+        isSelect = false;
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void OnClick_ThisS()
+    {
+        isSelect = !isSelect;
+        sp_Main.sprite = isSelect ? CandyMgr.Instance.PressedSprite[index] : CandyMgr.Instance.NormalSprite[index];
+    }
 }
