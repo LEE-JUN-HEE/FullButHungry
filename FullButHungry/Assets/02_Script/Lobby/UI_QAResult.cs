@@ -57,6 +57,7 @@ public class UI_QAResult : MonoBehaviour
         switch (current)
         {
             case Common.opentype.candy:
+                SceneManager.LoadScene("04_Candy");
                 break;
 
             case Common.opentype.choco:

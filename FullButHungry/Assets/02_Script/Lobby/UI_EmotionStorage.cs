@@ -46,7 +46,7 @@ public class UI_EmotionStorage : MonoBehaviour
 
     public void OnClick_Candy()
     {
-
+        SceneManager.LoadScene("04_Candy");
     }
 
     public void OnClick_Milk()

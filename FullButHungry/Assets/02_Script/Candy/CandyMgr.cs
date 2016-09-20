@@ -12,9 +12,12 @@ public class CandyMgr : MonoBehaviour
 
     public List<Sprite> NormalSprite = new List<Sprite>();
     public List<Sprite> PressedSprite = new List<Sprite>();
+    public List<Transform> tr_Hole = new List<Transform>();
+    public Dictionary<int, Candy_IT_Ingame> Dic_Pair = new Dictionary<int, Candy_IT_Ingame>();
     public Candy_IT_Ingame Enemy = null;
 
     //InGame
+    public Transform tr_Parent = null;
 
     //UI
     public PN_CandyNaming Naming = null;
@@ -35,6 +38,8 @@ public class CandyMgr : MonoBehaviour
     public bool isGameOver = false;
     public bool usechance = false;
 
+    float revealtime = 3;
+
     System.Action funcupdate;
 
     /// 
@@ -47,6 +52,10 @@ public class CandyMgr : MonoBehaviour
         Naming.gameObject.SetActive(true);
         GO_Alram.SetActive(false);
         funcupdate = update_empty;
+        for(int i = 0; i< 12; i++)
+        {
+            Dic_Pair.Add(i, null);
+        }
     }
 
     void Update()
@@ -70,6 +79,18 @@ public class CandyMgr : MonoBehaviour
         }
     }
 
+
+    void update_revealTime()
+    {
+        revealtime += Time.fixedDeltaTime;
+
+        if(revealtime >= 3f)
+        {
+            Debug.Log("Create");
+            CreateEnemy();
+        }
+    }
+
     void update_empty() { }
 
     void update_real()
@@ -80,6 +101,7 @@ public class CandyMgr : MonoBehaviour
         EnergyTime -= Time.unscaledDeltaTime;
         isGameOver = EnergyTime <= 0;
         update_ray();
+        update_revealTime();
     }
 
     public void NamingComplete()
@@ -126,40 +148,50 @@ public class CandyMgr : MonoBehaviour
         usechance = true;
         EnergyTime = 50;
     }
-
-   
-    public void ChangeEnemy()
+    
+    public void CreateEnemy()
     {
-        StartCoroutine(changeEnemy());
+        int index = Random.Range(0, 11);
+
+        if(Dic_Pair[index] == null)
+        {
+            //Create
+            revealtime = 0;
+            GameObject Go = (GameObject)Instantiate(Enemy.gameObject, tr_Parent);
+            Go.transform.localPosition = tr_Hole[index].localPosition;
+            Dic_Pair[index] = Go.GetComponent<Candy_IT_Ingame>();
+            Dic_Pair[index].SetData(Select[Random.Range(0, Select.Count - 1)]);
+        }
+        //StartCoroutine(changeEnemy());
     }
 
-    IEnumerator changeEnemy()
-    {
+    //IEnumerator changeEnemy()
+    //{
 
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    enemy.SetAni(i);
-        //    yield return new WaitForSeconds(0.3f);
-        //}
+    //    //for (int i = 0; i < 4; i++)
+    //    //{
+    //    //    enemy.SetAni(i);
+    //    //    yield return new WaitForSeconds(0.3f);
+    //    //}
 
-        //while (enemy.sp_Enemy.alpha > 0)
-        //{
-        //    enemy.sp_Enemy.alpha -= 0.2f;
-        //    yield return null;
-        //}
+    //    //while (enemy.sp_Enemy.alpha > 0)
+    //    //{
+    //    //    enemy.sp_Enemy.alpha -= 0.2f;
+    //    //    yield return null;
+    //    //}
 
-        //if (++EnemyCnt % 4 == 0)
-        //{
-        //    enemy.SetData(9);
-        //}
-        //else
-        //{
-        //    int rand = Random.Range(0, Select.Count - 1);
-        //    enemy.SetData(Select[rand]);
-        //}
+    //    //if (++EnemyCnt % 4 == 0)
+    //    //{
+    //    //    enemy.SetData(9);
+    //    //}
+    //    //else
+    //    //{
+    //    //    int rand = Random.Range(0, Select.Count - 1);
+    //    //    enemy.SetData(Select[rand]);
+    //    //}
 
-        yield break;
-    }
+    //    yield break;
+    //}
 
 
 

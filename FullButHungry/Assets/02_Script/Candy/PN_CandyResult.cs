@@ -11,7 +11,7 @@ public class PN_CandyResult : MonoBehaviour {
     {
         lb_Level.text = UserInfo.Level.ToString();
         pb_level.value = UserInfo.NormalizedExp;
-        lb_Count.text = (CandyMgr.Instance.EnemyCnt * 4).ToString();
+        lb_Count.text = (CandyMgr.Instance.EnemyCnt).ToString();
         gameObject.SetActive(true);
     }
 

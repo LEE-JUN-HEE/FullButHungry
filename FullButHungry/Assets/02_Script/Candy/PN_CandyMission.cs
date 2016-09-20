@@ -3,13 +3,9 @@ using System.Collections;
 
 public class PN_CandyMission : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void OnClick_Submit()
+    {
+        CandyMgr.Instance.MissionComplete();
+        gameObject.SetActive(false);
+    }
 }
