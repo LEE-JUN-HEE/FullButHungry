@@ -4,7 +4,7 @@ using System.Collections;
 public class Projectile : MonoBehaviour
 {
     // Update is called once per frame
-    void OnEable()
+    void OnEnable()
     {
         StartCoroutine(Sound());
     }
