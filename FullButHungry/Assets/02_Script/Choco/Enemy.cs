@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour
                 sp_Bomb.spriteName = "Ani_L";
                 sp_Bomb.width = 201;
                 sp_Bomb.height = 145;
+                GetComponent<AudioSource>().Play();
                 break;
         }
     }
@@ -89,10 +90,21 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                sp_Bomb.spriteName = "Ani_S";
-                sp_Bomb.width = 115;
-                sp_Bomb.height = 84;
+                StartCoroutine(Hit());
             }
         }
+    }
+
+    IEnumerator Hit()
+    {
+        sp_Bomb.spriteName = "Ani_S";
+        sp_Bomb.width = 115;
+        sp_Bomb.height = 84;
+        sp_Enemy.spriteName = index + "_D";
+        sp_Bomb.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        sp_Enemy.spriteName = index + "_N";
+        sp_Bomb.gameObject.SetActive(false);
     }
 }

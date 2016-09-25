@@ -24,6 +24,7 @@ public class Candy_IT_Ingame : MonoBehaviour
 
     public void SetData(int index)
     {
+        Debug.Log(index);
         sprite.Clear();
         sprite.Add(Resources.Load<Sprite>(string.Format("Candy/{0}_{1}", index, 1)));
         sprite.Add(Resources.Load<Sprite>(string.Format("Candy/{0}_{1}", index, 2)));

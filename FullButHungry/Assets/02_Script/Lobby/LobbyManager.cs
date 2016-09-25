@@ -23,6 +23,7 @@ public class LobbyManager : MonoBehaviour
     {
         Instance = this;
         BaseUI.Init();
+        GameManager.Instance.PlayBgm(0, true);
         switch (GameManager.OpenType)
         {
             case Common.opentype.choco:

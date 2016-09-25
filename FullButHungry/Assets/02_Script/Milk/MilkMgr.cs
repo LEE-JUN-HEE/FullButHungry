@@ -115,6 +115,7 @@ public class MilkMgr : MonoBehaviour
         Enemys.ForEach(x => x.SetData(Select[Random.Range(0, Select.Count - 1)]));
         isPause = false;
         funcupdate = update_real;
+        GameManager.Instance.PlayBgm(1, true);
     }
 
     public void Pause(bool _isPause)
@@ -126,6 +127,7 @@ public class MilkMgr : MonoBehaviour
     {
         UserInfo.ExpUp(50);
         ResultUI.Show();
+        GameManager.Instance.PlayBgm(2, false);
 
         funcupdate = update_empty;
     }

@@ -9,6 +9,8 @@ public class UI_Base : MonoBehaviour
     public UILabel lb_Talk = null;
     public GameObject go_ParticleL = null;
     public GameObject go_ParticleR = null;
+    public TweenAlpha TA_L = null;
+    public TweenAlpha TA_R = null;
     public SpriteRenderer Character = null;
 
     public Sprite sp_N = null;
@@ -92,14 +94,15 @@ public class UI_Base : MonoBehaviour
             }
         }
         string talk = null;
+        
         if (count < 30)
-            talk = "너무너무\n뇌고파요ㅠㅠ";
+            talk = "뇌불러서\n행복해요 ㅎㅎ";
         else if (count < 50)
-            talk = "너무너무\n뇌고파요ㅠㅠ2";
+            talk = "뇌고파요 ㅠㅠ";
         else if (count < 70)
-            talk = "너무너무\n뇌고파요ㅠㅠ3";
+            talk = "너무너무\n뇌고파요ㅠㅠ";
         else
-            talk = "너무너무\n뇌고파요ㅠㅠ4";
+            talk = "뇌고파서\n힘들어요ㅠㅠ";
 
         lb_Talk.text = talk;
         lb_Hungry.text = count + "%";
@@ -110,6 +113,8 @@ public class UI_Base : MonoBehaviour
     {
         go_ParticleL.SetActive(!UserInfo.HungryCheck);
         go_ParticleR.SetActive(UserInfo.HungryCheck);
+        TA_L.enabled = !UserInfo.HungryCheck;
+        TA_R.enabled = UserInfo.HungryCheck;
     }
 
     void refresh_sprite()
@@ -117,13 +122,13 @@ public class UI_Base : MonoBehaviour
         int level = (UserInfo.Level > 10) ? 9 : UserInfo.Level;
         int percent = 0;
         if (count < 30)
-            percent = 1;
-        else if (count < 50)
-            percent = 2;
-        else if (count < 70)
-            percent = 3;
-        else
             percent = 4;
+        else if (count < 50)
+            percent = 3;
+        else if (count < 70)
+            percent = 2;
+        else
+            percent = 1;
 
         string path = (string.Format("MainCharacter/{0}/{0}_{1}", level, percent));
         sp_N = Resources.Load<Sprite>(path);

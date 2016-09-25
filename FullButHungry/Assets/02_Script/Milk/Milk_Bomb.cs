@@ -37,6 +37,7 @@ public class Milk_Bomb : MonoBehaviour
                 sp_Main.height = 576;
                 sp_Main.spriteName = "Milk_Bomb";
                 tw_scale.duration = 0.2f;
+                GetComponent<AudioSource>().Play();
                 MilkMgr.Instance.Boom();
                 break;
         }

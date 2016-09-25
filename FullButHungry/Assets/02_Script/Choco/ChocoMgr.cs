@@ -114,6 +114,7 @@ public class ChocoMgr : MonoBehaviour
         IsBoss = false;
         isPause = false;
         funcupdate = update_real;
+        GameManager.Instance.PlayBgm(1, true);
     }
 
     public void Pause(bool _isPause)
@@ -125,6 +126,7 @@ public class ChocoMgr : MonoBehaviour
     {
         UserInfo.ExpUp(50);
         ResultUI.Show();
+        GameManager.Instance.PlayBgm(2, false);
 
         funcupdate = update_empty;
     }

@@ -56,6 +56,7 @@ public class CandyMgr : MonoBehaviour
         {
             Dic_Pair.Add(i, null);
         }
+        GameManager.Instance.PlayBgm(1, true);
     }
 
     void Update()
@@ -121,6 +122,7 @@ public class CandyMgr : MonoBehaviour
         //enemy.SetData(Select[Random.Range(0, Select.Count - 1)]);
         isPause = false;
         funcupdate = update_real;
+        GameManager.Instance.PlayBgm(2, false);
     }
 
     public void Pause(bool _isPause)
