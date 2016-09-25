@@ -82,12 +82,12 @@ public class UI_Base : MonoBehaviour
                     case 6:
                     case 8:
                     case 9:
-                        if (UserInfo.Hungry[i])
+                        if (!UserInfo.Hungry[i])
                             count += 10;
                         break;
 
                     default:
-                        if (!UserInfo.Hungry[i])
+                        if (UserInfo.Hungry[i])
                             count += 10;
                         break;
                 }
