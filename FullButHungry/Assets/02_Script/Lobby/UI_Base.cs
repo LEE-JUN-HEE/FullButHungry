@@ -115,6 +115,8 @@ public class UI_Base : MonoBehaviour
         go_ParticleR.SetActive(UserInfo.HungryCheck);
         TA_L.enabled = !UserInfo.HungryCheck;
         TA_R.enabled = UserInfo.HungryCheck;
+        TA_L.GetComponent<UISprite>().alpha = 1.0f;
+        TA_R.GetComponent<UISprite>().alpha = 1.0f;
     }
 
     void refresh_sprite()

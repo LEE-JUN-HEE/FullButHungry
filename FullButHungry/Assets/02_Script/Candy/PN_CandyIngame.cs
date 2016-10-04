@@ -6,6 +6,7 @@ public class PN_CandyIngame : MonoBehaviour {
 
     public List<UISprite> sp_Energy = new List<UISprite>();
     public UILabel lb_Count = null;
+    public TweenScale ts_Bt = null;
 
     void Update()
     {

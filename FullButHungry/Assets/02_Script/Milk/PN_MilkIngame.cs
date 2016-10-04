@@ -9,6 +9,7 @@ public class PN_MilkIngame : MonoBehaviour
     public UILabel lb_Count = null;
     public UIInput Input = null;
     public UISprite sp_Input = null;
+    public TweenScale ts_Bt = null;
     public UILabel debug = null;
 
     void Update()

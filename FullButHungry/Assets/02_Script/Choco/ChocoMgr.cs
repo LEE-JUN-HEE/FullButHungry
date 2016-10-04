@@ -44,6 +44,8 @@ public class ChocoMgr : MonoBehaviour
     public PN_Alert AlertUI = null;
     public PN_Result ResultUI = null;
     public PN_Pause PauseUI = null;
+    public PN_Empty EmptyUI = null;
+    public PN_MissionClear MCUI = null;
 
     List<int> Select = new List<int>();
 
@@ -83,6 +85,8 @@ public class ChocoMgr : MonoBehaviour
     {
         if (isPause) return;
         if (isGameOver) { GameOver(); return; }
+        if (usechance == false && EnergyTime < 10) { EmptyUI.Show(); return; }
+
 
         EnergyTime -= Time.unscaledDeltaTime;
         isGameOver = EnergyTime <= 0;

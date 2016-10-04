@@ -10,6 +10,7 @@ public class PN_Ingame : MonoBehaviour
     public UISprite sp_Input = null;
     public UIInput Input = null;
     public UILabel debug = null;
+    public TweenScale ts_Bt = null;
     bool isSubmit = false;
     
     void Update()

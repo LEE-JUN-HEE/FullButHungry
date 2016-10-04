@@ -5,7 +5,7 @@ public class PN_Mission : MonoBehaviour {
     
     public void OnClick_Submit()
     {
-        ChocoMgr.Instance.MissionComplete();
+        ChocoMgr.Instance.MCUI.Show();
         gameObject.SetActive(false);
     }
 }
