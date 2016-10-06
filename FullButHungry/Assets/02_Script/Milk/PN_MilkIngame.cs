@@ -59,6 +59,8 @@ public class PN_MilkIngame : MonoBehaviour
 
     public void OnClick_Pause()
     {
+        if (MilkMgr.Instance.isPause) return;
+
         MilkMgr.Instance.PauseUI.Show();
     }
 

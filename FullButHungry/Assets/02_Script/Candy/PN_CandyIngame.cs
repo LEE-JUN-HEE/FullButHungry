@@ -39,6 +39,7 @@ public class PN_CandyIngame : MonoBehaviour {
 
     public void OnClick_Pause()
     {
+        if (CandyMgr.Instance.isPause) return;
         CandyMgr.Instance.PauseUI.Show();
     }
 

@@ -60,6 +60,7 @@ public class PN_Ingame : MonoBehaviour
 
     public void OnClick_Pause()
     {
+        if (ChocoMgr.Instance.isPause) return;
         ChocoMgr.Instance.PauseUI.Show();
     }
 

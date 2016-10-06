@@ -5,7 +5,7 @@ public class PN_CandyMission : MonoBehaviour {
 
     public void OnClick_Submit()
     {
-        CandyMgr.Instance.MissionComplete();
+        CandyMgr.Instance.MCUI.Show();
         gameObject.SetActive(false);
     }
 }

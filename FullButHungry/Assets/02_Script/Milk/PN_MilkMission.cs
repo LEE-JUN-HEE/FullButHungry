@@ -5,7 +5,7 @@ public class PN_MilkMission : MonoBehaviour
 {
     public void OnClick_Submit()
     {
-        MilkMgr.Instance.MissionComplete();
+        MilkMgr.Instance.MCUI.Show();
         gameObject.SetActive(false);
     }
 }

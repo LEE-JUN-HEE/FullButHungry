@@ -43,7 +43,8 @@ public class MilkMgr : MonoBehaviour
     public PN_Alert AlertUI = null;
     public PN_MilkResult ResultUI = null;
     public PN_MilkPause PauseUI = null;
-
+    public PN_MilkMissionClear MCUI = null;
+    public PN_MilkEmpty EmptyUI = null;
 
     //Logic
     public List<Milk_Enemy> Enemys = new List<Milk_Enemy>();
@@ -85,6 +86,7 @@ public class MilkMgr : MonoBehaviour
     {
         if (isPause) return;
         if (isGameOver) { GameOver(); return; }
+        if (usechance == false && EnergyTime < 10) { EmptyUI.Show(); return; }
 
         EnergyTime -= Time.unscaledDeltaTime;
         isGameOver = EnergyTime <= 0;

@@ -28,6 +28,8 @@ public class CandyMgr : MonoBehaviour
     public PN_Alert AlertUI = null;
     public PN_CandyResult ResultUI = null;
     public PN_CandyPause PauseUI = null;
+    public PN_CandyEmpty EmptyUI = null;
+    public PN_CandyMissionClear MCUI = null;
 
     List<int> Select = new List<int>();
 
@@ -56,7 +58,6 @@ public class CandyMgr : MonoBehaviour
         {
             Dic_Pair.Add(i, null);
         }
-        GameManager.Instance.PlayBgm(1, true);
     }
 
     void Update()
@@ -98,6 +99,7 @@ public class CandyMgr : MonoBehaviour
     {
         if (isPause) return;
         if (isGameOver) { GameOver(); return; }
+        if (usechance == false && EnergyTime < 10) { EmptyUI.Show(); return; }
 
         EnergyTime -= Time.unscaledDeltaTime;
         isGameOver = EnergyTime <= 0;
@@ -122,7 +124,7 @@ public class CandyMgr : MonoBehaviour
         //enemy.SetData(Select[Random.Range(0, Select.Count - 1)]);
         isPause = false;
         funcupdate = update_real;
-        GameManager.Instance.PlayBgm(2, false);
+        GameManager.Instance.PlayBgm(1, false);
     }
 
     public void Pause(bool _isPause)
@@ -136,6 +138,7 @@ public class CandyMgr : MonoBehaviour
         ResultUI.Show();
 
         funcupdate = update_empty;
+        GameManager.Instance.PlayBgm(2, true);
     }
 
     public void Mission()
