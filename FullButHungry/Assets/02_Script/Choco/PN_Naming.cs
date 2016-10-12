@@ -9,6 +9,9 @@ public class PN_Naming : MonoBehaviour
     public UIGrid gr_Naming = null;
     public UIInput KingNameInput = null;
     public UILabel lb_Msg = null;
+    public GameObject Bottom = null;
+
+    float opentime = 9999;
 
     public void Awake()
     {
@@ -17,9 +20,17 @@ public class PN_Naming : MonoBehaviour
             NamingList.Add(gr_Naming.transform.GetChild(i).GetComponent<IT_Naming>());
             gr_Naming.transform.GetChild(i).GetComponent<IT_Naming>().SetData(i);
         }
-        lb_Msg.text = "지금 널 괴롭히는 감정의\n악당들이 여기 숨어있어\n어떤 악당인지 찾아줘!"; 
+        lb_Msg.text = "지금 널 괴롭히는 감정의\n악당들이 여기 숨어있어\n어떤 악당인지 찾아줘!";
+        opentime = Time.unscaledTime;
     }
 
+    void Update()
+    {
+        if (opentime + 2f < Time.unscaledTime)
+        {
+            Bottom.SetActive(true);
+        }
+    }
     public void OnClick_Back()
     {
         GameManager.OpenType = Common.opentype.choco;
@@ -30,7 +41,6 @@ public class PN_Naming : MonoBehaviour
     {
         if (string.IsNullOrEmpty(KingNameInput.value))
         {
-            lb_Msg.text = "대왕악당은 네가 직접\n이름을 지어줄래?";
         }
         else
         {
@@ -49,5 +59,10 @@ public class PN_Naming : MonoBehaviour
                 ChocoMgr.Instance.NamingComplete(KingNameInput.value);
             }
         }
+    }
+
+    public void OnFinished()
+    {
+        lb_Msg.text = "대왕악당은 네가 직접\n이름을 지어줄래?";
     }
 }

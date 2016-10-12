@@ -12,6 +12,7 @@ public class UserInfo
     static public float NormalizedExp { get { return Exp / MaxExp; } }
 
     //앱 켜저있을때만 저장
+    static public bool isLevelUp = false;
     static public bool HungryCheck = false;
     static public List<bool> Hungry = new List<bool>(10);
 
@@ -43,6 +44,7 @@ public class UserInfo
         Exp += value;
         if (Exp >= MaxExp)
         {
+            isLevelUp = true;
             Level += 1;
             Exp -= MaxExp;
         }

@@ -7,6 +7,7 @@ public class UI_Base : MonoBehaviour
     public UIProgressBar pb_Exp = null;
     public UILabel lb_Hungry = null;
     public UILabel lb_Talk = null;
+    public UILabel lb_Levelup = null;
     public GameObject go_ParticleL = null;
     public GameObject go_ParticleR = null;
     public TweenAlpha TA_L = null;
@@ -22,6 +23,7 @@ public class UI_Base : MonoBehaviour
 
     float AniStart = 0;
     int count = 0;
+    float leveluptime = 9999f;
 
     public void Init()
     {
@@ -58,6 +60,12 @@ public class UI_Base : MonoBehaviour
         {
             Character.sprite = sp_C;
         }
+
+        if (leveluptime + 3f < Time.unscaledTime)
+        {
+            UserInfo.isLevelUp = false;
+            refresh_hungry();
+        }
     }
 
     public void Refresh()
@@ -70,8 +78,14 @@ public class UI_Base : MonoBehaviour
     void refresh_hungry()
     {
         count = 0;
-        if (UserInfo.HungryCheck == true)
+        if (UserInfo.isLevelUp)
         {
+            leveluptime = Time.unscaledTime;
+            lb_Levelup.gameObject.SetActive(true);
+        }
+        else if (UserInfo.HungryCheck == true)
+        {
+            lb_Levelup.gameObject.SetActive(false);
             for (int i = 0; i < 10; i++)
             {
                 switch (i)
@@ -92,7 +106,6 @@ public class UI_Base : MonoBehaviour
                         break;
                 }
             }
-        }
         string talk = null;
         
         if (count < 30)
@@ -106,6 +119,13 @@ public class UI_Base : MonoBehaviour
 
         lb_Talk.text = talk;
         lb_Hungry.text = count + "%";
+        }
+        else
+        {
+            lb_Levelup.gameObject.SetActive(false);
+            lb_Talk.text = "오늘 나의 허기지수는?";
+            lb_Hungry.text = "00%";
+        }
 
     }
 

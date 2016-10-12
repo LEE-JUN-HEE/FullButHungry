@@ -54,6 +54,7 @@ public class MilkMgr : MonoBehaviour
     public float EnergyTime = 50;
     public int EnemyCnt = 0;
     public List<string> AtkString = new List<string>();
+    public List<AudioClip> AC_Bomb = new List<AudioClip>();
 
     public bool IsBoss { get; set; }
     public bool isPause = true;
