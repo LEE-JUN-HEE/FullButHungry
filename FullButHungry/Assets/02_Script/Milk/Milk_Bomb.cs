@@ -14,8 +14,6 @@ public class Milk_Bomb : MonoBehaviour
                 sp_Main.width = 86;
                 sp_Main.height = 125;
                 sp_Main.spriteName = "Milk_bombN";
-                GetComponent<AudioSource>().clip = MilkMgr.Instance.AC_Bomb[0];
-                GetComponent<AudioSource>().Play();
                 tw_scale.duration = 0.5f;
 
                 break;

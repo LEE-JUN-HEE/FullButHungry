@@ -195,5 +195,6 @@ public class UI_Base : MonoBehaviour
 
     public void OnClick_Brain()
     {
+        LobbyManager.Instance.MyInfoUI.Show();
     }
 }

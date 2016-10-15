@@ -14,7 +14,7 @@ public class LobbyManager : MonoBehaviour
     public UI_PreQA QA = null;
     public UI_QAResult QAResult = null;
     public UI_DicInfo DicInfoUI = null;
-
+    public UI_MyInfo MyInfoUI = null;
 
     //////////////////////////////////////////////////
     

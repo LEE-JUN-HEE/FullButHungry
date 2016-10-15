@@ -53,6 +53,30 @@ public class UI_HungryCheck : MonoBehaviour
                 UserInfo.Hungry[i] = ITList[i].isYes;
         }
         LobbyManager.Instance.BaseUI.Refresh();
+
+        int count = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            switch (i)
+            {
+                case 1:
+                case 3:
+                case 4:
+                case 6:
+                case 8:
+                case 9:
+                    if (!UserInfo.Hungry[i])
+                        count += 10;
+                    break;
+
+                default:
+                    if (UserInfo.Hungry[i])
+                        count += 10;
+                    break;
+            }
+        }
+
+        UserInfo.Check_Hungry((float)count / 100f);
         Hide();
     }
 }
