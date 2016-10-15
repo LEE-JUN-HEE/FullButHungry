@@ -5,6 +5,7 @@ public class UI_MyInfo : MonoBehaviour
 {
     public UILabel lb_Eval = null;
     public UILabel lb_Cur = null;
+    public UILabel lb_Lv = null;
 
     public UIProgressBar pb_Hot = null;
     public UIProgressBar pb_Junk = null;
@@ -16,6 +17,7 @@ public class UI_MyInfo : MonoBehaviour
 
     public void Show()
     {
+        lb_Lv.text = "Lv." + UserInfo.Level.ToString();
         lb_Eval.text = ((int)(UserInfo.totalhungry * 100 / UserInfo.hungrycnt)).ToString() +"%";
         int count = 0;
         if (UserInfo.HungryCheck == true)

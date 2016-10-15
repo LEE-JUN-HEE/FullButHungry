@@ -31,7 +31,6 @@ public class PN_CandyNaming : MonoBehaviour {
 
     public void OnClick_Back()
     {
-        GameManager.OpenType = Common.opentype.candy;
         SceneManager.LoadScene("01_Lobby");
     }
 

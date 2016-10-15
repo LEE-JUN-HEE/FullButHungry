@@ -11,5 +11,6 @@ public class Common
         choco,
         candy,
         milk,
+        emotion,
     }
 }

@@ -33,7 +33,6 @@ public class PN_Naming : MonoBehaviour
     }
     public void OnClick_Back()
     {
-        GameManager.OpenType = Common.opentype.choco;
         SceneManager.LoadScene("01_Lobby");
     }
 

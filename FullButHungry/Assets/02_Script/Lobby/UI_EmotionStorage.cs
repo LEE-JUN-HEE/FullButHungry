@@ -44,18 +44,21 @@ public class UI_EmotionStorage : MonoBehaviour
 
     public void OnClick_Choco()
     {
+        GameManager.OpenType = Common.opentype.emotion;
         UserInfo.Click_Choco();
         SceneManager.LoadScene("02_Choco");
     }
 
     public void OnClick_Candy()
     {
+        GameManager.OpenType = Common.opentype.emotion;
         UserInfo.Click_Candy();
         SceneManager.LoadScene("04_Candy");
     }
 
     public void OnClick_Milk()
     {
+        GameManager.OpenType = Common.opentype.emotion;
         UserInfo.Click_MIlk();
         SceneManager.LoadScene("03_Milk");
     }

@@ -38,6 +38,10 @@ public class LobbyManager : MonoBehaviour
                 QAResult.Show(GameManager.OpenType, true);
                 break;
 
+            case Common.opentype.emotion:
+                EmotionStorageUI.Show();
+                break;
+
             case Common.opentype.none:
                 break;
         }
