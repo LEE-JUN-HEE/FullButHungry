@@ -9,12 +9,13 @@ public class LobbyManager : MonoBehaviour
     public UI_EmotionStorage EmotionStorageUI = null;
     public UI_HungryCheck HungryCheckUI = null;
     public UI_SelectFood SelectFoodUI = null;
-    public UI_Mission MissionUI = null;
+    public UI_MIssionReal MissionUI = null;
     public UI_Dic DicUI = null;
     public UI_PreQA QA = null;
     public UI_QAResult QAResult = null;
     public UI_DicInfo DicInfoUI = null;
     public UI_MyInfo MyInfoUI = null;
+    public UI_Mission NotReadyUI = null;
 
     //////////////////////////////////////////////////
     

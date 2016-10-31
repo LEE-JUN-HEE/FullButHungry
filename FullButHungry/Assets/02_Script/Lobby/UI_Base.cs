@@ -82,6 +82,7 @@ public class UI_Base : MonoBehaviour
         {
             leveluptime = Time.unscaledTime;
             lb_Levelup.gameObject.SetActive(true);
+            GetComponent<AudioSource>().Play();
         }
         else if (UserInfo.HungryCheck == true)
         {
@@ -177,7 +178,8 @@ public class UI_Base : MonoBehaviour
 
     public void OnClick_Mission()
     {
-        UserInfo.ExpUp(150f);
+        LobbyManager.Instance.MissionUI.Show();
+    
     }
 
     public void OnClick_Home()

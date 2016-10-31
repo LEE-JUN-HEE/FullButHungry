@@ -35,13 +35,14 @@ public class Candy_IT_Ingame : MonoBehaviour
 
     IEnumerator Ready()
     {
+        GetComponent<AudioSource>().clip = CandyMgr.Instance.AC_Clip[0];
         sp_Main.sprite = sprite[0];
-
         yield return new WaitForSeconds(0.5f);
         sp_Main.sprite = sprite[1];
 
         yield return new WaitForSeconds(0.5f);
         sp_Main.sprite = sprite[2];
+        GetComponent<AudioSource>().Play();
 
         isReady = true;
         starttime = Time.time;
@@ -52,7 +53,8 @@ public class Candy_IT_Ingame : MonoBehaviour
         isReady = false;
         isDead = true;
         sp_Main.sprite = sprite[3];
-
+        GetComponent<AudioSource>().clip = CandyMgr.Instance.AC_Clip[Random.Range(1, 3)];
+        GetComponent<AudioSource>().Play();
         CandyMgr.Instance.EnemyCnt++;
 
         yield return new WaitForSeconds(0.3f);

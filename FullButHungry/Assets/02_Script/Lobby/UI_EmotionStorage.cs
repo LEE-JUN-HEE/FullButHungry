@@ -27,18 +27,21 @@ public class UI_EmotionStorage : MonoBehaviour
 
     public void OnClick_Hot()
     {
+        LobbyManager.Instance.NotReadyUI.Show();
         //UserInfo.Click_Hot();
     }
 
     public void OnClick_Junk()
     {
 
+        LobbyManager.Instance.NotReadyUI.Show();
         //UserInfo.Click_Junk();
     }
 
     public void OnClick_Noodle()
     {
 
+        LobbyManager.Instance.NotReadyUI.Show();
         //UserInfo.Click_Bread();
     }
 
@@ -65,6 +68,7 @@ public class UI_EmotionStorage : MonoBehaviour
 
     public void OnClick_Desert()
     {
+        LobbyManager.Instance.NotReadyUI.Show();
         //UserInfo.Click_Desert();
     }
 

@@ -17,11 +17,13 @@ public class PN_CandyResult : MonoBehaviour {
 
     public void OnClick_Home()
     {
+        GameManager.OpenType = Common.opentype.none;
         SceneManager.LoadScene("01_Lobby");
     }
 
     public void OnClick_Retry()
     {
         SceneManager.LoadScene("04_Candy");
+        GameManager.Instance.PlayBgm(0, true);
     }
 }

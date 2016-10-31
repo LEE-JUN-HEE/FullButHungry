@@ -22,5 +22,8 @@ public class UI_DicInfo : MonoBehaviour
 
     public void OnClick_Back() { Hide(); }
 
-
+    public void OnClick_Cheat()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

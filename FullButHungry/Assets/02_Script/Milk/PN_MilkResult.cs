@@ -19,11 +19,13 @@ public class PN_MilkResult : MonoBehaviour {
 
     public void OnClick_Home()
     {
+        GameManager.OpenType = Common.opentype.none;
         SceneManager.LoadScene("01_Lobby");
     }
 
     public void OnClick_Retry()
     {
         SceneManager.LoadScene("03_Milk");
+        GameManager.Instance.PlayBgm(0, true);
     }
 }

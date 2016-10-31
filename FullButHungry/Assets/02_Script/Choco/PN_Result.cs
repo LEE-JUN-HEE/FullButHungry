@@ -21,10 +21,12 @@ public class PN_Result : MonoBehaviour
     public void OnClick_Home()
     {
         SceneManager.LoadScene("01_Lobby");
+        GameManager.OpenType = Common.opentype.none;
     }
 
     public void OnClick_Retry()
     {
         SceneManager.LoadScene("02_Choco");
+        GameManager.Instance.PlayBgm(0 ,true);
     }
 }

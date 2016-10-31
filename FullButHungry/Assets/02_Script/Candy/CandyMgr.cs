@@ -13,6 +13,7 @@ public class CandyMgr : MonoBehaviour
     public List<Sprite> NormalSprite = new List<Sprite>();
     public List<Sprite> PressedSprite = new List<Sprite>();
     public List<Transform> tr_Hole = new List<Transform>();
+    public List<AudioClip> AC_Clip = new List<AudioClip>();
     public Dictionary<int, Candy_IT_Ingame> Dic_Pair = new Dictionary<int, Candy_IT_Ingame>();
     public Candy_IT_Ingame Enemy = null;
 
@@ -41,6 +42,7 @@ public class CandyMgr : MonoBehaviour
     public bool usechance = false;
 
     float revealtime = 3;
+    bool isCreate = false;
 
     System.Action funcupdate;
 
@@ -86,10 +88,11 @@ public class CandyMgr : MonoBehaviour
     {
         revealtime += Time.fixedDeltaTime;
 
-        if(revealtime >= 3f)
+        if (revealtime >= 1f && isCreate == false)
         {
             Debug.Log("Create");
-            CreateEnemy();
+            isCreate = true;
+            StartCoroutine(CreateEnemy());
         }
     }
 
@@ -154,19 +157,26 @@ public class CandyMgr : MonoBehaviour
         EnergyTime = 50;
     }
     
-    public void CreateEnemy()
+    IEnumerator CreateEnemy()
     {
-        int index = Random.Range(0, 11);
-
-        if(Dic_Pair[index] == null)
+        int count = Random.Range(0, 2);
+        for (int i = 0; i <= count; )
         {
-            //Create
-            revealtime = 0;
-            GameObject Go = (GameObject)Instantiate(Enemy.gameObject, tr_Parent);
-            Go.transform.localPosition = tr_Hole[index].localPosition;
-            Dic_Pair[index] = Go.GetComponent<Candy_IT_Ingame>();
-            Dic_Pair[index].SetData(Select[Random.Range(0, Select.Count - 1)]);
+            int index = Random.Range(0, 11);
+
+            if (Dic_Pair[index] == null)
+            {
+                //Create
+                i++;
+                GameObject Go = (GameObject)Instantiate(Enemy.gameObject, tr_Parent);
+                Go.transform.localPosition = tr_Hole[index].localPosition;
+                Dic_Pair[index] = Go.GetComponent<Candy_IT_Ingame>();
+                Dic_Pair[index].SetData(Select[Random.Range(0, Select.Count - 1)]);
+            }
+            yield return null;
         }
+        isCreate = false;
+        revealtime = 0;
         //StartCoroutine(changeEnemy());
     }
 

@@ -6,6 +6,7 @@ public class UI_Mission : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        LobbyManager.Instance.NotReadyUI.GetComponent<AudioSource>().Play();
     }
 
 
